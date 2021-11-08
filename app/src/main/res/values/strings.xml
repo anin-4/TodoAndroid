@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">todoApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_item_to_recycler_view">Add item to recycler view</string>
+    <string name="this_is_a_sample_text_case">this is a sample text case</string>
+    <string name="priority_indicator">priority indicator</string>
+    <string name="add_item">Add item</string>
+    <string name="enter_task">Enter task</string>
+    <string name="important">Important</string>
+    <string name="important_task">Important Task</string>
+</resources>
