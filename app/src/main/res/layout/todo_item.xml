@@ -1,56 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/todoItemsCard"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="10dp"
-        app:cardCornerRadius="12dp"
-        >
-        <RelativeLayout
+        android:layout_margin="5dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/todoItemsCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp">
+            android:elevation="15dp"
+            app:cardCornerRadius="12dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp">
+
                 <CheckBox
                     android:id="@+id/todoCheckBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    />
+                    android:layout_alignParentStart="true" />
 
-            <TextView
-                android:id="@+id/todoTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@id/todoCheckBox"
-                android:layout_alignBottom="@id/todoCheckBox"
-                android:layout_toStartOf="@id/priorityIndicator"
-                android:layout_toEndOf="@id/todoCheckBox"
-                android:gravity="center"
-                android:maxLines="2"
-                android:ellipsize="end"
-                android:text="@string/this_is_a_sample_text_case" />
+                <TextView
+                    android:id="@+id/todoTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/todoCheckBox"
+                    android:layout_alignBottom="@id/todoCheckBox"
+                    android:layout_toStartOf="@id/priorityIndicator"
+                    android:layout_toEndOf="@id/todoCheckBox"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:text="@string/this_is_a_sample_text_case" />
 
-            <ImageView
-                android:id="@+id/priorityIndicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/priority_drawable"
-                android:layout_alignParentEnd="true"
-                android:layout_alignTop="@id/todoCheckBox"
-                android:layout_alignBottom="@id/todoCheckBox"
-                android:layout_centerVertical="true"
-                android:contentDescription="@string/priority_indicator"
-                android:visibility="invisible"
-                />
+                <ImageView
+                    android:id="@+id/priorityIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/priority_drawable"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@id/todoCheckBox"
+                    android:layout_alignBottom="@id/todoCheckBox"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/priority_indicator"
+                    android:visibility="invisible" />
 
-        </RelativeLayout>
+            </RelativeLayout>
 
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
 
-</RelativeLayout>
+    </RelativeLayout>
+</layout>

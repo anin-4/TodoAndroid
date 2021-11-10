@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/todo_app_navigation"
+    app:startDestination="@id/fragmentTodos">
+
+    <fragment
+        android:id="@+id/fragmentTodos"
+        android:name="com.example.todoapp.ui.FragmentTodos"
+        android:label="FragmentTodos" >
+        <action
+            android:id="@+id/action_fragmentTodos_to_fragmentEdit"
+            app:destination="@id/fragmentEdit" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentEdit"
+        android:name="com.example.todoapp.ui.FragmentEdit"
+        android:label="FragmentEdit" />
+</navigation>

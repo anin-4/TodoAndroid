@@ -3,9 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Projects/todoApp/app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.30092592592592593" />
         <entry key="..\:/Android Projects/todoApp/app/src/main/res/layout/activity_main.xml" value="0.2942708333333333" />
         <entry key="..\:/Android Projects/todoApp/app/src/main/res/layout/edit_todo_item.xml" value="0.2754782700075322" />
-        <entry key="..\:/Android Projects/todoApp/app/src/main/res/layout/fragment_todos.xml" value="0.2754782700075322" />
+        <entry key="..\:/Android Projects/todoApp/app/src/main/res/layout/fragment_todos.xml" value="0.2086956590966153" />
         <entry key="..\:/Android Projects/todoApp/app/src/main/res/layout/todo_item.xml" value="0.2942708333333333" />
       </map>
     </option>
