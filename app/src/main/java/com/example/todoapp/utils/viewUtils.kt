@@ -2,6 +2,7 @@ package com.example.todoapp.utils
 
 import android.view.View
 import android.widget.CheckBox
+import androidx.appcompat.widget.SearchView
 
 
 fun View.invisible(){
@@ -22,4 +23,20 @@ fun CheckBox.check(){
 
 fun CheckBox.unCheck(){
     isChecked=false
+}
+
+inline fun SearchView.onTextChangeListener(crossinline text:(String)->Unit){
+    this.setOnQueryTextListener(
+        object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                text(newText.orEmpty())
+                return true
+            }
+
+        }
+    )
 }

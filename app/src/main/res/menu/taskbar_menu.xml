@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/searchButtonMenu"
+        android:icon="@drawable/ic_baseline_search_24"
+        app:showAsAction="always|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        android:title="@string/search"/>
+
+    <item
+        android:icon="@drawable/ic_baseline_sort_24"
+        app:showAsAction="ifRoom"
+        android:title="@string/sort_elements">
+        <menu>
+            <item android:id="@+id/sortByName"
+                android:title="@string/sort_by_name" />
+            <item android:id="@+id/sortByTime"
+                android:title="@string/sort_by_time"/>
+        </menu>
+    </item>
+
+    <item android:id="@+id/deleteFinishedTask"
+        app:showAsAction="never"
+        android:title="@string/delete_finished_task"
+        />
+    <item android:id="@+id/hideFinishedTask"
+        app:showAsAction="never"
+        android:checkable="true"
+        android:title="@string/hide_finished_task"/>
+
+</menu>

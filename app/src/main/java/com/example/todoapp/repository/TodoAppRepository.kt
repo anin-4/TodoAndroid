@@ -7,4 +7,6 @@ class TodoAppRepository @Inject constructor(
     private val todoDao: TodoDao
 ) {
     fun getItemsFromDatabase() = todoDao.getItemsOrderedByTime()
+
+    fun getItemsFromQuery(query:String) = todoDao.getItemsBasedOnQuery(query)
 }

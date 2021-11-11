@@ -9,4 +9,10 @@
     <string name="enter_task">Enter task</string>
     <string name="important">Important</string>
     <string name="important_task">Important Task</string>
+    <string name="search">Search</string>
+    <string name="sort_by_name">sort by name</string>
+    <string name="sort_by_time">sort by time</string>
+    <string name="sort_elements">sort elements</string>
+    <string name="delete_finished_task">Delete Finished Task</string>
+    <string name="hide_finished_task">hide finished task</string>
 </resources>

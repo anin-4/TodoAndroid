@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    compileSdk 30
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.example.todoapp"
@@ -72,9 +72,9 @@ dependencies {
     //coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
-
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0"
     //retrofit
     def retrofit="2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
@@ -87,8 +87,6 @@ dependencies {
 
 
     implementation("androidx.activity:activity-ktx:1.3.1")
-
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
 
     //datastore
     implementation("androidx.datastore:datastore-preferences:1.0.0")

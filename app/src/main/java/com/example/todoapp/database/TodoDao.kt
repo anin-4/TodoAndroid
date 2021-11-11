@@ -17,6 +17,9 @@ interface TodoDao {
     @Query("select * from todo_task_table order by created")
     fun getItemsOrderedByTime(): Flow<List<Task>>
 
+    @Query("select * from todo_task_table where todo like '%' || :query || '%' order by important desc")
+    fun getItemsBasedOnQuery(query:String):Flow<List<Task>>
+
     @Update
     fun update(task: Task)
 }
