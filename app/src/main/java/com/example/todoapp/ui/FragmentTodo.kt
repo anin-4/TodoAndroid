@@ -5,17 +5,17 @@ import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todoapp.R
 import com.example.todoapp.databinding.FragmentTodosBinding
 import com.example.todoapp.ui.adapter.TodoListRecyclerViewAdapter
 import com.example.todoapp.ui.viewModels.MainViewModel
+import com.example.todoapp.ui.viewModels.SortOrder
 import com.example.todoapp.utils.onTextChangeListener
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 
@@ -34,6 +34,7 @@ class FragmentTodos : Fragment() {
         return binding.root
     }
 
+    @ExperimentalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -42,13 +43,9 @@ class FragmentTodos : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED){
-                mainViewModel.searchQuery.collect {
-                    todoListRecyclerViewAdapter.submitList(it)
-                }
-            }
-        }
+        mainViewModel.tasks.observe(viewLifecycleOwner,{
+            todoListRecyclerViewAdapter.submitList(it)
+        })
 
         setHasOptionsMenu(true)
 
@@ -60,7 +57,12 @@ class FragmentTodos : Fragment() {
         val searchView = searchMenu.actionView as SearchView
         
         searchView.onTextChangeListener {
-            mainViewModel.getItemsFromSearchQuery(it)
+            mainViewModel.changeQuery(it)
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            menu.findItem(R.id.hideFinishedTask).isChecked=
+            mainViewModel.preferenceFlow.first().hideCompleted
         }
     }
 
@@ -68,18 +70,17 @@ class FragmentTodos : Fragment() {
 
        return  when (item.itemId) {
             R.id.sortByName -> {
-
+                mainViewModel.sortItemBySortingOrder(SortOrder.BY_NAME)
                 true
             }
 
             R.id.sortByTime -> {
-
-
+                mainViewModel.sortItemBySortingOrder(SortOrder.BY_DATE)
                 true
             }
            R.id.hideFinishedTask ->{
-
-
+               item.isChecked=!item.isChecked
+               mainViewModel.hideCompletedItems(item.isChecked)
                true
            }
 

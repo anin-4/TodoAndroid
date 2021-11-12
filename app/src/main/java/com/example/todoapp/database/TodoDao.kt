@@ -14,11 +14,12 @@ interface TodoDao {
     @Query("delete from todo_task_table")
     suspend fun deleteAll()
 
-    @Query("select * from todo_task_table order by created")
-    fun getItemsOrderedByTime(): Flow<List<Task>>
+    @Query("SELECT * FROM todo_task_table WHERE (finished != :hideCompleted OR finished = 0) AND todo LIKE '%' || :searchQuery || '%' ORDER BY important DESC, todo")
+    fun getTasksSortedByName(searchQuery: String, hideCompleted: Boolean): Flow<List<Task>>
 
-    @Query("select * from todo_task_table where todo like '%' || :query || '%' order by important desc")
-    fun getItemsBasedOnQuery(query:String):Flow<List<Task>>
+    @Query("SELECT * FROM todo_task_table WHERE (finished != :hideCompleted OR finished = 0) AND todo LIKE '%' || :searchQuery || '%' ORDER BY important DESC, created")
+    fun getTasksSortedByDateCreated(searchQuery: String, hideCompleted: Boolean): Flow<List<Task>>
+
 
     @Update
     fun update(task: Task)
