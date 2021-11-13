@@ -23,4 +23,7 @@ interface TodoDao {
 
     @Update
     suspend fun update(task: Task)
+
+    @Query("delete from todo_task_table where id=:key")
+    suspend fun delete(key:Int)
 }

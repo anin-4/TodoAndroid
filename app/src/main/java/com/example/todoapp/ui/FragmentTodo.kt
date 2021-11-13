@@ -6,10 +6,14 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.todoapp.R
 import com.example.todoapp.data.Task
 import com.example.todoapp.databinding.FragmentTodosBinding
+import com.example.todoapp.ui.adapter.ClickHandlerType
 import com.example.todoapp.ui.adapter.TodoListRecyclerViewAdapter
 import com.example.todoapp.ui.viewModels.MainViewModel
 import com.example.todoapp.ui.viewModels.SortOrder
@@ -48,9 +52,42 @@ class FragmentTodos : Fragment() {
             todoListRecyclerViewAdapter.submitList(it)
         })
 
-        todoListRecyclerViewAdapter.onClickHandler ={item:Task, selected:Boolean ->
-                mainViewModel.handleClick(item,selected)
+        todoListRecyclerViewAdapter.onClickHandler ={item:Task, selected:Boolean,case:ClickHandlerType ->
+            when(case){
+                ClickHandlerType.NAVIGATE_EDIT -> {
+                    val bundle = Bundle().apply {
+                        putParcelable("task",item)
+                    }
+                    findNavController().navigate(R.id.action_fragmentTodos_to_fragmentEdit,bundle)
+                }
+                ClickHandlerType.CHECK_BOX ->{
+                    mainViewModel.handleClick(item, selected)
+                }
+            }
         }
+
+        binding.addFloatingButton.setOnClickListener {
+            findNavController().navigate(R.id.action_fragmentTodos_to_fragmentEdit)
+        }
+
+        ItemTouchHelper(object :ItemTouchHelper.SimpleCallback(
+            0,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        ){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val item = todoListRecyclerViewAdapter.currentList[viewHolder.adapterPosition]
+                mainViewModel.onTaskSwiped(item)
+            }
+
+        }).attachToRecyclerView(binding.todoItemsRv)
 
         setHasOptionsMenu(true)
 
@@ -72,7 +109,6 @@ class FragmentTodos : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
        return  when (item.itemId) {
             R.id.sortByName -> {
                 mainViewModel.sortItemBySortingOrder(SortOrder.BY_NAME)
@@ -90,7 +126,6 @@ class FragmentTodos : Fragment() {
            }
 
            R.id.deleteFinishedTask -> {
-
                true
            }
 

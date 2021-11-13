@@ -20,4 +20,8 @@ class TodoAppRepository @Inject constructor(
     suspend fun updateTask(item:Task, selected:Boolean){
         todoDao.update(item.copy(finished = selected))
     }
+
+    suspend fun deleteTask(item: Task){
+        todoDao.delete(item.id)
+    }
 }

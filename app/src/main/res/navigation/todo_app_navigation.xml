@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/fragmentTodos"
         android:name="com.example.todoapp.ui.FragmentTodos"
-        android:label="FragmentTodos" >
+        android:label="Tasks">
         <action
             android:id="@+id/action_fragmentTodos_to_fragmentEdit"
             app:destination="@id/fragmentEdit" />
@@ -16,5 +16,11 @@
     <fragment
         android:id="@+id/fragmentEdit"
         android:name="com.example.todoapp.ui.FragmentEdit"
-        android:label="FragmentEdit" />
+        android:label="Update Tasks">
+        <argument
+            android:name="task"
+            android:defaultValue="@null"
+            app:argType="com.example.todoapp.data.Task"
+            app:nullable="true" />
+    </fragment>
 </navigation>

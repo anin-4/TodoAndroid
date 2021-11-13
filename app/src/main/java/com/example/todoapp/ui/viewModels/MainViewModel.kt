@@ -54,6 +54,12 @@ class MainViewModel @Inject constructor(
             todoAppRepository.updateTask(item,selected)
     }
 
+    fun onTaskSwiped(item: Task?) = viewModelScope.launch {
+        item?.let {
+            todoAppRepository.deleteTask(item)
+        }
+    }
+
 }
 
 enum class SortOrder{
