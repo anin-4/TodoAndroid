@@ -8,12 +8,16 @@ import com.example.todoapp.data.Task
 import com.example.todoapp.databinding.TodoItemBinding
 
 class TodoListRecyclerViewAdapter: ListAdapter<Task, TodoListViewHolder>(DiffCallBack()){
+
+    var onClickHandler:((item:Task,selected:Boolean)->Unit)?=null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoListViewHolder {
         val binding= TodoItemBinding.inflate(LayoutInflater.from(parent.context),parent, false)
         return TodoListViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: TodoListViewHolder, position: Int) {
+        holder.onClickHandler=onClickHandler
         val currentItem= getItem(position)
         holder.bind(currentItem)
     }

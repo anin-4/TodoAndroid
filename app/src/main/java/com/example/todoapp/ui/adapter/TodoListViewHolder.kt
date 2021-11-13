@@ -9,6 +9,7 @@ import com.example.todoapp.utils.visible
 
 class TodoListViewHolder(private val binding:TodoItemBinding):RecyclerView.ViewHolder(binding.root) {
 
+    var onClickHandler:((item:Task, selected:Boolean)->Unit)?= null
     fun bind(item: Task){
         binding.apply {
             todoTextView.text=item.todo
@@ -17,6 +18,13 @@ class TodoListViewHolder(private val binding:TodoItemBinding):RecyclerView.ViewH
                 todoTextView.paint.isStrikeThruText=true
             }
             if(item.important) priorityIndicator.visible()
+
+            todoCheckBox.setOnClickListener {
+                val position = adapterPosition
+                if(position!=RecyclerView.NO_POSITION){
+                    onClickHandler?.invoke(item,todoCheckBox.isChecked)
+                }
+            }
         }
 
     }

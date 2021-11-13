@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todoapp.R
+import com.example.todoapp.data.Task
 import com.example.todoapp.databinding.FragmentTodosBinding
 import com.example.todoapp.ui.adapter.TodoListRecyclerViewAdapter
 import com.example.todoapp.ui.viewModels.MainViewModel
@@ -46,6 +47,10 @@ class FragmentTodos : Fragment() {
         mainViewModel.tasks.observe(viewLifecycleOwner,{
             todoListRecyclerViewAdapter.submitList(it)
         })
+
+        todoListRecyclerViewAdapter.onClickHandler ={item:Task, selected:Boolean ->
+                mainViewModel.handleClick(item,selected)
+        }
 
         setHasOptionsMenu(true)
 

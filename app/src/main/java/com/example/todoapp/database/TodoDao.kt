@@ -22,5 +22,5 @@ interface TodoDao {
 
 
     @Update
-    fun update(task: Task)
+    suspend fun update(task: Task)
 }

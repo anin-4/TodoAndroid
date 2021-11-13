@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.todoapp.data.PreferenceManager
+import com.example.todoapp.data.Task
 import com.example.todoapp.repository.TodoAppRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -47,6 +48,10 @@ class MainViewModel @Inject constructor(
 
     fun changeQuery(query:String){
         _searchQuery.value=query
+    }
+
+    fun handleClick(item: Task, selected: Boolean) = viewModelScope.launch {
+            todoAppRepository.updateTask(item,selected)
     }
 
 }

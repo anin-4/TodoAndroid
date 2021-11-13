@@ -16,4 +16,8 @@ class TodoAppRepository @Inject constructor(
             SortOrder.BY_NAME->todoDao.getTasksSortedByName(query,hideCompleted)
         }
     }
+
+    suspend fun updateTask(item:Task, selected:Boolean){
+        todoDao.update(item.copy(finished = selected))
+    }
 }
