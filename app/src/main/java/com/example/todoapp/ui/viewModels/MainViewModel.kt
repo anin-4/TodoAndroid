@@ -71,6 +71,10 @@ class MainViewModel @Inject constructor(
 
     }
 
+    fun deleteAllTask()= viewModelScope.launch {
+        todoAppRepository.deleteAll()
+    }
+
 
 }
 

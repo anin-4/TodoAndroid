@@ -32,4 +32,8 @@ class TodoAppRepository @Inject constructor(
     suspend fun insertTodo(item:Task){
         todoDao.insertIntoDb(item)
     }
+
+    suspend fun deleteAll() {
+        todoDao.deleteAll()
+    }
 }

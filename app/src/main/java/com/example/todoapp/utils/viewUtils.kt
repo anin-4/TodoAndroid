@@ -7,16 +7,9 @@ import com.google.android.material.snackbar.Snackbar
 
 
 
-fun View.invisible(){
-    this.visibility=View.INVISIBLE
-}
 
 fun View.visible(){
     visibility= View.VISIBLE
-}
-
-fun View.gone(){
-    visibility=View.GONE
 }
 
 fun CheckBox.check(){

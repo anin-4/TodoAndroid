@@ -11,7 +11,11 @@
         android:label="Tasks">
         <action
             android:id="@+id/action_fragmentTodos_to_fragmentEdit"
-            app:destination="@id/fragmentEdit" />
+            app:destination="@id/fragmentEdit"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/fragmentEdit"
@@ -24,7 +28,11 @@
             app:nullable="true" />
         <action
             android:id="@+id/action_fragmentEdit_to_fragmentTodos"
-            app:destination="@id/fragmentTodos" />
+            app:destination="@id/fragmentTodos"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <argument
             android:name="type"
             app:argType="integer"

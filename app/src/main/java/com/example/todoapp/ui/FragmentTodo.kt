@@ -1,7 +1,9 @@
 package com.example.todoapp.ui
 
+
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -133,6 +135,16 @@ class FragmentTodos : Fragment() {
            }
 
            R.id.deleteFinishedTask -> {
+               AlertDialog.Builder(requireContext())
+                   .setMessage("Are you sure to about deleting all the todos?")
+                   .setNegativeButton("DELETE"
+                   ) { p0, _ ->
+                       mainViewModel.deleteAllTask()
+                       p0?.dismiss()
+                   }
+                   .setPositiveButton("CANCEL"
+                   ) { p0, _ -> p0?.dismiss() }
+                   .show()
                true
            }
 

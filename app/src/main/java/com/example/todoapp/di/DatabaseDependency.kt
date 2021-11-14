@@ -1,7 +1,6 @@
 package com.example.todoapp.di
 
 import android.content.Context
-import androidx.room.PrimaryKey
 import androidx.room.Room
 import com.example.todoapp.database.TodoDatabase
 import dagger.Module
