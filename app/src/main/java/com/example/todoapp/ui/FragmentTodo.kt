@@ -17,6 +17,8 @@ import com.example.todoapp.ui.adapter.ClickHandlerType
 import com.example.todoapp.ui.adapter.TodoListRecyclerViewAdapter
 import com.example.todoapp.ui.viewModels.MainViewModel
 import com.example.todoapp.ui.viewModels.SortOrder
+import com.example.todoapp.utils.Constants.EDIT_MODE
+import com.example.todoapp.utils.Constants.NEW_MODE
 import com.example.todoapp.utils.onTextChangeListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -30,6 +32,7 @@ class FragmentTodos : Fragment() {
     private  lateinit var binding:FragmentTodosBinding
     private val todoListRecyclerViewAdapter:TodoListRecyclerViewAdapter = TodoListRecyclerViewAdapter()
     private val mainViewModel:MainViewModel by viewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,6 +60,7 @@ class FragmentTodos : Fragment() {
                 ClickHandlerType.NAVIGATE_EDIT -> {
                     val bundle = Bundle().apply {
                         putParcelable("task",item)
+                        putInt("type", EDIT_MODE)
                     }
                     findNavController().navigate(R.id.action_fragmentTodos_to_fragmentEdit,bundle)
                 }
@@ -67,7 +71,10 @@ class FragmentTodos : Fragment() {
         }
 
         binding.addFloatingButton.setOnClickListener {
-            findNavController().navigate(R.id.action_fragmentTodos_to_fragmentEdit)
+            val bundle =Bundle().apply {
+                putInt("type", NEW_MODE)
+            }
+            findNavController().navigate(R.id.action_fragmentTodos_to_fragmentEdit,bundle)
         }
 
         ItemTouchHelper(object :ItemTouchHelper.SimpleCallback(

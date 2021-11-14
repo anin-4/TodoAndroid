@@ -21,7 +21,15 @@ class TodoAppRepository @Inject constructor(
         todoDao.update(item.copy(finished = selected))
     }
 
+    suspend fun updateTaskEdit(item:Task){
+        todoDao.update(item)
+    }
+
     suspend fun deleteTask(item: Task){
         todoDao.delete(item.id)
+    }
+
+    suspend fun insertTodo(item:Task){
+        todoDao.insertIntoDb(item)
     }
 }

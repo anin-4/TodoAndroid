@@ -60,6 +60,18 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    fun saveIntoDataBase(item:Task) = viewModelScope.launch {
+        todoAppRepository.insertTodo(item)
+    }
+
+    fun updateTask(item:Task?) = viewModelScope.launch {
+        item?.let {
+            todoAppRepository.updateTaskEdit(item)
+        }
+
+    }
+
+
 }
 
 enum class SortOrder{

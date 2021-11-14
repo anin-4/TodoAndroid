@@ -22,5 +22,12 @@
             android:defaultValue="@null"
             app:argType="com.example.todoapp.data.Task"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_fragmentEdit_to_fragmentTodos"
+            app:destination="@id/fragmentTodos" />
+        <argument
+            android:name="type"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
 </navigation>
